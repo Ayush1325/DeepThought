@@ -9,26 +9,6 @@
   <meta content="#ffffff" name="theme-color" />
   <meta content="#da532c" name="msapplication-TileColor" />
 
-  {% if config.extra.favicon.webmanifest %}
-  <link href='{{ config.extra.favicon.webmanifest }}' rel="manifest" />
-  {% endif %}
-
-  {% if config.extra.favicon.safari_pinned_tab %}
-  <link color="#5bbad5" href='{{ config.extra.favicon.safari_pinned_tab }}' rel="mask-icon" />
-  {% endif %}
-
-  {% if config.extra.favicon.favicon_16x16 %}
-  <link href='{{ config.extra.favicon.favicon_16x16 }}' rel="icon" sizes="16x16" type="image/png" />
-  {% endif %}
-
-  {% if config.extra.favicon.favicon_32x32 %}
-  <link href='{{ config.extra.favicon.favicon_32x32 }}' rel="icon" sizes="32x32" type="image/png" />
-  {% endif %}
-
-  {% if config.extra.favicon.apple_touch_icon %}
-  <link href='{{ config.extra.favicon.apple_touch_icon }}' rel="apple-touch-icon" sizes="180x180" />
-  {% endif %}
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css" integrity="sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
   <link href="{{ get_url(path='deep-thought.css') }}" rel="stylesheet" />
