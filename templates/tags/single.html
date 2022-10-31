@@ -8,9 +8,11 @@
         <h1 class="title">
           <span class="icon-text">
             <span class="icon">
-              <i class="fas fa-tag"></i>
+              <a class="has-text-rss" href="{{ term.permalink }}{{ config.feed_filename }}" target="_blank">
+                <i class="fas fa-tag"></i>
+              </a>
             </span>
-            <span>{{ term.name }}</span>
+            <span>{{ term.name | capitalize }}</span>
           </span>
         </h1>
       </div>

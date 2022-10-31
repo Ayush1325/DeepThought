@@ -3,19 +3,67 @@
 {% block content %}
 <section class="section">
   <div class="container">
-    <div class="has-text-centered">
-      <h1 class="title is-2">{{ section.title }}</h1>
-      <p class="subtitle is-4">{{ section.description }}</p>
-      {% if config.extra.author.avatar %}
-      <figure class="image is-flex is-justify-content-center is-align-items-center">
-        <img class="is-rounded" src="{{ config.extra.author.avatar }}" style="max-width: 192px" />
-      </figure>
-      {% endif %}
-      {{ macros:: social_links( social_config=config.extra.social) }}
+    <div class="columns">
+      <div class="column is-narrow">
+        {% if config.extra.author.avatar %}
+        <figure class="image is-flex is-justify-content-center is-align-items-center">
+          <img class="is-rounded" src="{{ config.extra.author.avatar }}" style="max-width: 192px" />
+        </figure>
+        {% endif %}
+      </div>
+      <div class="column">
+        <h1 class="title is-2">{{ section.title }}</h1>
+        <div class="content">
+          {{section.content | safe }}
+        </div>
+      </div>
     </div>
-    <div class="content">
-      {{ section.content | safe }}
+
+    <div class="columns">
+      <div class="column">
+        <h2 class="subtitle">Interests</h2>
+        <ul class="fa-ul">
+          {% for interest in section.extra.interests %}
+          <li>
+            <span class="icon fa-li">
+              <i class="fas fa-heart"></i>
+            </span>
+            {{ interest }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column">
+        <h2 class="subtitle">Education</h2>
+        <ul class="fa-ul">
+          {% for institute in section.extra.education %}
+          <li>
+            <span class="icon fa-li">
+              <i class="fas fa-graduation-cap"></i>
+            </span>
+            <div class="item">
+              <p><strong>{{ institute.degree }}</strong></p>
+              <p>{{ institute.name }}</p>
+              <span class="icon-text has-text-grey">
+                <span class="icon">
+                  <i class="far fa-calendar-alt"></i>
+                </span>
+                <span>{{ institute.year }}</span>
+              </span>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
+
+    <hr>
+
+    {{ macros::recent_posts(post_section=get_section(path="posts/_index.md")) }}
+
+    <hr>
+
+    {{ macros::recent_projects(post_section=get_section(path="projects/_index.md")) }}
   </div>
 </section>
 {% endblock %}

@@ -25,37 +25,19 @@
   <link href='{{ config.extra.favicon.apple_touch_icon }}' rel="apple-touch-icon" sizes="180x180" />
   {% endif %}
 
-  {% if config.extra.galleria.enabled %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.css" integrity="sha384-+rY0QD+LRnTOquDMzGa9lXU6jIwdiQuwCJQ2cdcW0qeP/0UbjQCZlXnRsUMA+9pH" crossorigin="anonymous">
-  {% endif %}
-
-  {% if config.extra.mapbox.enabled %}
-  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" integrity="sha384-oGm59HWAkwO32h2w8u0B98wKBZJwd6MbWtAJwQKCTffZjOXHXrnyv9Syjovgc+UV" crossorigin="anonymous">
-  {% endif %}
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css" integrity="sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
   <link href="{{ get_url(path='deep-thought.css') }}" rel="stylesheet" />
   {% block user_custom_stylesheet %}
-  {% endblock %}
-
-  <title>
-    {% block title %}
+  {% endblock %} <title> {% block title %}
     {{ config.title }}
     {% endblock title %}
   </title>
 
   {% block analytics %}
-  {% if config.extra.analytics.google %}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.analytics.google }}"></script>
-  <script type="text/javascript">
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "{{ config.extra.analytics.google }}");
-  </script>
+  {% if config.extra.analytics.goatcounter %}
+    <script data-goatcounter="https://{{ config.extra.analytics.goatcounter }}/count"
+        async src="//gc.zgo.at/count.js"></script>
   {% endif %}
   {% endblock analytics %}
 
@@ -114,25 +96,22 @@
   {% endblock %}
 
   {% block search %}
-  <section class="modal" id="search-modal">
+  <div class="modal" id="search-modal">
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Search</p>
+        <input class="input" id="search" placeholder="Search this website." type="search" />
       </header>
       <section class="modal-card-body">
-        <div class="field mb-2">
-          <div class="control">
-            <input class="input" id="search" placeholder="Search this website." type="search" />
-          </div>
-        </div>
         <div class="search-results">
           <div class="search-results__items"></div>
         </div>
       </section>
+      <footer class="modal-card-foot">
+      </footer>
     </div>
     <button aria-label="close" class="modal-close is-large"></button>
-  </section>
+  </div>
   {% endblock %}
 
 
@@ -173,6 +152,16 @@
 
   {% block footer %}
   <footer class="footer py-4">
+    <div class="columns is-centered">
+      <div class="column is-narrow">
+        <h2 class="subtitile">Contact Me</h2>
+        {{ macros:: social_links( social_config=config.extra.social) }}
+      </div>
+      <div class="column is-narrow">
+        <h2 class="subtitile">Support Me</h2>
+        {{ macros:: support_links( support_config=config.extra.support) }}
+      </div>
+    </div>
     <div class="content has-text-centered">
       <p>
         Built with
@@ -203,19 +192,11 @@
   </footer>
   {% endblock %}
 
-  {% if config.extra.galleria.enabled %}
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/galleria.min.js" integrity="sha384-QSfwGT8/EU536DKdtyP2D6SLlh8zBaZ0cVkwfrwhqzIU9VCfJT00CLVP5t+HAiYg" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.js" integrity="sha384-DwpKI+deZB267+hPKwiOIc5Y2GKsVL0mR6hgz7GgIu7AgAMYqJwcJKY1YBNfhWcY" crossorigin="anonymous"></script>
-  {% endif %}
   {% if config.extra.mermaid.enabled %}
   <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.5/dist/mermaid.min.js" integrity="sha384-0yWn54pSGtfKCU+skfA69l25VsCw+MZt4LQov3xNRoS7YkAMrFokGgSBnAWSK4pv" crossorigin="anonymous"></script>
   {% endif %}
   {% if config.extra.chart.enabled %}
   <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js" integrity="sha384-xC3h1+IHXK8seA+8KfT79Z4e0GPsznjXBoMa5nd8ooWKplPyXx92NOmljWxLC/cs" crossorigin="anonymous"></script>
-  {% endif %}
-  {% if config.extra.mapbox.enabled %}
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js" integrity="sha384-Pulw7+h73841BQIK0LzJCydKRPChJUF9w8h8W0o3h+cLtoyNPJS847bQauLWOTwg" crossorigin="anonymous"></script>
   {% endif %}
   <script src="{{ get_url(path='elasticlunr.min.js') }}"></script>
   <script src="{{ get_url(path='search_index.' ~ lang ~ '.js') }}"></script>

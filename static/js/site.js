@@ -193,7 +193,7 @@ function documentReadyCallback() {
 
   document.getElementById("nav-search").addEventListener("click", (evt) => {
     //let target = evt.currentTarget.getAttribute("data-target");
-    document.querySelector("html").classList.add("is-clipped");
+    //document.querySelector("html").classList.add("is-clipped");
     document.getElementById("search-modal").classList.add("is-active");
 
     document.getElementById("search").focus();
